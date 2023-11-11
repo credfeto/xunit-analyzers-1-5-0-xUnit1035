@@ -11,4 +11,15 @@ internal static class NetworkConfigurationBuilder
                          new TestFixtureNetworkConfigurations()
                      };
     }
+
+    public static IEnumerable<object[]> NoErrors(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            yield return new object[]
+                         {
+                             new TestFixtureNetworkConfigurations()
+                         };
+        }
+    }
 }

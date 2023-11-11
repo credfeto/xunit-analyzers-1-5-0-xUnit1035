@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Xunit;
+﻿using Xunit;
 
 namespace Example;
 
@@ -18,8 +17,15 @@ public sealed class ExampleTests
                 NetworkNodeProtocol.WEB_SOCKETS,
                 NetworkNodeType.ONE_NODE_IS_MULTI,
                 MemberType = typeof(NetworkConfigurationBuilder))]
-    public Task SingleFullNodeUsingMultiAsync(TestFixtureNetworkConfigurations networkSetup)
+    public void CompilesWithErrors(TestFixtureNetworkConfigurations networkSetup)
     {
-        return Task.CompletedTask;
+        Assert.NotNull(networkSetup);
+    }
+
+    [Theory]
+    [MemberData(nameof(NetworkConfigurationBuilder.NoErrors), 10, MemberType = typeof(NetworkConfigurationBuilder))]
+    public void CompilesOk(TestFixtureNetworkConfigurations networkSetup)
+    {
+        Assert.NotNull(networkSetup);
     }
 }
